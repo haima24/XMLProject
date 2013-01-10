@@ -1,0 +1,1 @@
+This folder is for Database. Please remove this file when use.
