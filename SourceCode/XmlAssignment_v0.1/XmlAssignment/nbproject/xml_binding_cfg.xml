@@ -1,6 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <schemas xmlns='http://xml.netbeans.org/schema/JAXBWizConfig' destdir='build/generated-sources/jaxb' projectName='XmlAssignment' version='1.0'>
-	<schema type='-xmlschema' package='' name='Restaurants'>
+	<schema type='-xmlschema' package='xml.bar.binding.dishcategory' name='DishCategory'>
+		<xjc-options>
+		</xjc-options>
+		<schema-sources>
+			<schema-source location='src/conf/xml-resources/jaxb/DishCategory/dishcategories.xsd' origLocation='src/java/xml/bar/schemas/dishcategories.xsd'/>
+		</schema-sources>
+		<bindings>
+		</bindings>
+		<catalog/>
+	</schema>
+	<schema type='-xmlschema' package='xml.bar.binding.restaurant' name='Restaurants'>
 		<xjc-options>
 		</xjc-options>
 		<schema-sources>

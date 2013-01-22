@@ -6,19 +6,10 @@ package xml.bar.Model;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.datatype.DatatypeConfigurationException;
-import xml.bar.binding.schemas.RestaurantType;
-import xml.bar.binding.schemas.Restaurants;
-import xml.bar.core.DbEntities;
 
 /**
  *

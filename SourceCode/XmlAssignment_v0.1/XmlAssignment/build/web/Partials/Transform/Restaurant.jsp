@@ -1,6 +1,6 @@
 <%-- 
-    Document   : DishCategory
-    Created on : Jan 22, 2013, 7:40:50 PM
+    Document   : Restaurant
+    Created on : Jan 22, 2013, 12:50:01 AM
     Author     : Tu
 --%>
 
@@ -15,10 +15,8 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <c:import url="/WEB-INF/XmlDoc/DishCategory.xml" var="xmlDoc" charEncoding="UTF-8"/>
-        <c:import url="/WEB-INF/XslDoc/DishCategory.xsl" var="xslDoc" charEncoding="UTF-8"/>
-        <x:transform xml="${xmlDoc}" xslt="${xslDoc}">
-            <x:param name="resid" value="${param.resid}"/>
-        </x:transform>
+        <c:import url="/WEB-INF/XmlDoc/Restaurants.xml" var="xmlDoc" charEncoding="UTF-8"/>
+        <c:import url="/WEB-INF/XslDoc/Restaurants.xsl" var="xslDoc" charEncoding="UTF-8"/>
+        <x:transform xml="${xmlDoc}" xslt="${xslDoc}"/>
     </body>
 </html>

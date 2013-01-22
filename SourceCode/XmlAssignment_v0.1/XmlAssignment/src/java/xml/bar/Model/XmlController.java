@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.datatype.DatatypeConfigurationException;
-import xml.bar.binding.schemas.Restaurants;
+import xml.bar.binding.dishcategory.DishCategories;
+import xml.bar.binding.restaurant.Restaurants;
 import xml.bar.core.DbEntities;
 import xml.bar.utils.XmlUtils;
 
@@ -39,11 +40,20 @@ public class XmlController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            Restaurants resList = DbEntities.getRestaurants();
+            String action = request.getParameter("action");
+            if (action.equals("MARSHAL_RESTAURANTS")) {
+                Restaurants resList = DbEntities.getRestaurants();
+                String webPath = getServletContext().getRealPath("/");
+                String filePath = webPath + "WEB-INF/XmlDoc/Restaurants.xml";
+                XmlUtils.marshalXml(resList, filePath);
+            }else if(action.equals("MARSHAL_DISHCATEGORY")){
+                DishCategories dishes=DbEntities.getDishCategories();
+                String webPath = getServletContext().getRealPath("/");
+                String filePath = webPath + "WEB-INF/XmlDoc/DishCategory.xml";
+                XmlUtils.marshalXml(dishes, filePath);
+            }
 
-            String webPath = getServletContext().getRealPath("/");
-            String filePath = webPath + "WEB-INF/XmlDoc/Restaurants.xml";
-            XmlUtils.marshalXml(resList, filePath);
+
 
         } catch (SQLException ex) {
             Logger.getLogger(XmlController.class.getName()).log(Level.SEVERE, null, ex);
