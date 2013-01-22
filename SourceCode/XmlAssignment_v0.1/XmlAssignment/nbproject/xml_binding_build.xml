@@ -14,7 +14,7 @@
         <mkdir dir="${build.generated.sources.dir}/jaxb" xmlns:s="http://xml.netbeans.org/schema/JAXBWizConfig"/>
         <mkdir dir="build/generated/jaxbCache" xmlns:s="http://xml.netbeans.org/schema/JAXBWizConfig"/>
         <mkdir dir="build/generated/jaxbCache/Restaurants"/>
-        <xjc package="xml.bar.binding.schemas" destdir="build/generated/jaxbCache/Restaurants" catalog="catalog.xml">
+        <xjc destdir="build/generated/jaxbCache/Restaurants" catalog="catalog.xml">
             <classpath>
                 <pathelement location="${src.dir}"/>
                 <pathelement path="${jaxbwiz.xjcrun.classpath}"/>

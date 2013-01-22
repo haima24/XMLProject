@@ -15,22 +15,34 @@
          syntax recommendation http://www.w3.org/TR/xslt 
     -->
     <xsl:template match="/">
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Address</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <xsl:for-each select="Restaurants/Restaurant">
-                            <tr>
-                                <td><xsl:value-of select="Name"/></td>
-                                <td><xsl:value-of select="Address"/></td>
-                            </tr>
-                        </xsl:for-each>
-                    </tbody>
-                </table>
-       
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <xsl:for-each select="Restaurants/Restaurant">
+                    <tr>
+                        <td>
+                            <xsl:value-of select="Name"/>
+                        </td>
+                        <td>
+                            <xsl:value-of select="Address"/>
+                        </td>
+                        <td> 
+                            <a>
+                                <xsl:attribute name="href">
+                                    <xsl:text>resid=</xsl:text>
+                                    <xsl:value-of select="Id" />
+                                </xsl:attribute>
+                                <xsl:text>ViewCategory</xsl:text>
+                            </a>
+                        </td>
+                    </tr>
+                </xsl:for-each>
+            </tbody>
+        </table>
     </xsl:template>
 </xsl:stylesheet>

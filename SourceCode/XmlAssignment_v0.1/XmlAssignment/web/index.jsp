@@ -15,7 +15,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="XmlController">Persis Xml</a>
-        <a href="RestaurantController">List Restaurant</a>
+        <a href="Partials/Transform/Restaurant.jsp">List Restaurant</a>
     </body>
 </html>
