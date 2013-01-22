@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://xml.netbeans.org/schema/restaurants"
+            xmlns="http://xml.netbeans.org/schema/restaurants"
+            elementFormDefault="qualified">
+    <xsd:element name="Restaurants">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Restaurant" type="restaurantType" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="restaurantType">
+        <xsd:sequence>
+            <xsd:element name="Id" type="xsd:positiveInteger"/>
+            <xsd:element name="Name" type="xsd:string"/>
+            <xsd:element name="Latitute" type="xsd:decimal"/>
+            <xsd:element name="Longtitue" type="xsd:decimal"/>
+            <xsd:element name="Address" type="xsd:string"/>
+            <xsd:element name="Description" type="xsd:string"/>
+            <xsd:element name="PhoneNum" type="xsd:string"/>
+            <xsd:element name="MinimumOrder" type="xsd:decimal"/>
+            <xsd:element name="OpenHours" type="xsd:dateTime"/>
+            <xsd:element name="CloseHours" type="xsd:dateTime"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

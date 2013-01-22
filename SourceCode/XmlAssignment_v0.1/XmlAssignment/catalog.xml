@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/E:/JAVA/Solutions/XMLProject/trunk/SourceCode/XmlAssignment_v0.1/XmlAssignment/src/java/xml/bar/schemas/customers.xsd" uri="src/conf/xml-resources/jaxb/Custo/customers.xsd"/>
+    <system systemId="file:/E:/JAVA/Solutions/XMLProject/trunk/SourceCode/XmlAssignment_v0.1/XmlAssignment/src/java/xml/bar/schemas/restaurants.xsd" uri="src/conf/xml-resources/jaxb/Restaurants/restaurants.xsd"/>
+</catalog>
