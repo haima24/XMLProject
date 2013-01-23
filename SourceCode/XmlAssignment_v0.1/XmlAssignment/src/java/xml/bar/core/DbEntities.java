@@ -6,25 +6,46 @@ package xml.bar.core;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
-import xml.bar.binding.dishcategory.DishCategories;
-import xml.bar.binding.dishcategory.DishCategoryType;
-import xml.bar.binding.restaurant.RestaurantType;
-import xml.bar.binding.restaurant.Restaurants;
+import xml.bar.binding.dishcategories.DishCategories;
+import xml.bar.binding.dishcategories.DishCategoryType;
+import xml.bar.binding.restaurants.RestaurantType;
+import xml.bar.binding.restaurants.Restaurants;
 
 /**
  *
  * @author Tu
  */
 public class DbEntities {
+
+    public static boolean insertRestaurant(RestaurantType res) {
+        try {
+            String sql = "insert into BAR_Restaurant (Name,Latitute,Longtitue,Address,Description,PhoneNum,MinimumOrder,OpenHours,CloseHours) values (?,?,?,?,?,?,?,?,?)";
+            Connection con = DataAccessLayer.getConnection();
+            PreparedStatement pre = con.prepareStatement(sql);
+            pre.setString(1, res.getName());
+            pre.setDouble(2, res.getLatitute().doubleValue());
+            pre.setDouble(3, res.getLongtitue().doubleValue());
+            pre.setString(4, res.getAddress());
+            pre.setString(5, res.getDescription());
+            pre.setString(6, res.getPhoneNum());
+            pre.setDouble(7, res.getMinimumOrder().doubleValue());
+            pre.setDate(8, new Date(res.getOpenHours().toGregorianCalendar().getTime().getTime()));
+            pre.setDate(9, new Date(res.getCloseHours().toGregorianCalendar().getTime().getTime()));
+            return pre.executeUpdate()>0;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DbEntities.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 
     public static Restaurants getRestaurants() throws SQLException, DatatypeConfigurationException {
         String sql = "select Id,Name,Latitute,Longtitue,Address,Description,PhoneNum,MinimumOrder,OpenHours,CloseHours from BAR_Restaurant";
@@ -50,7 +71,7 @@ public class DbEntities {
 
                 GregorianCalendar cldCloseHours = new GregorianCalendar();
                 cldCloseHours.setTime(rs.getDate("CloseHours"));
-                res.setOpenHours(DatatypeFactory.newInstance().newXMLGregorianCalendar(cldCloseHours));
+                res.setCloseHours(DatatypeFactory.newInstance().newXMLGregorianCalendar(cldCloseHours));
 
                 restaurants.getRestaurant().add(res);
             }

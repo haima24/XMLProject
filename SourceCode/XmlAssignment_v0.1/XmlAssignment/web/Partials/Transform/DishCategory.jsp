@@ -15,8 +15,8 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <c:import url="/WEB-INF/XmlDoc/DishCategory.xml" var="xmlDoc" charEncoding="UTF-8"/>
-        <c:import url="/WEB-INF/XslDoc/DishCategory.xsl" var="xslDoc" charEncoding="UTF-8"/>
+        <c:import url="/XmlDoc/DishCategory.xml" var="xmlDoc" charEncoding="UTF-8"/>
+        <c:import url="/XslDoc/DishCategory.xsl" var="xslDoc" charEncoding="UTF-8"/>
         <x:transform xml="${xmlDoc}" xslt="${xslDoc}">
             <x:param name="resid" value="${param.resid}"/>
         </x:transform>

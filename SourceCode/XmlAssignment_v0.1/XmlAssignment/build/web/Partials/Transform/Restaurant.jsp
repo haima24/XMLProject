@@ -14,9 +14,20 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <c:import url="/WEB-INF/XmlDoc/Restaurants.xml" var="xmlDoc" charEncoding="UTF-8"/>
-        <c:import url="/WEB-INF/XslDoc/Restaurants.xsl" var="xslDoc" charEncoding="UTF-8"/>
+        <script>var contextPath="${pageContext.request.contextPath}"</script>
+        <script language="JavaScript" src="${pageContext.request.contextPath}/Scripts/RestaurantScript.js"></script>
+        <c:import url="/XmlDoc/Restaurants.xml" var="xmlDoc" charEncoding="UTF-8"/>
+        <c:import url="/XslDoc/Restaurants.xsl" var="xslDoc" charEncoding="UTF-8"/>
         <x:transform xml="${xmlDoc}" xslt="${xslDoc}"/>
+        <br/>
+        <div>
+            <input type="text" id="txtName" value="" />
+            <input type="text" id="txtLatitute" value="" />
+            <input type="text" id="txtLongtitute" value="" />
+            <input type="text" id="txtAddress" value="" />
+            <input type="text" id="txtDescription" value="" />
+            <input type="text" id="txtPhoneNum" value="" />
+            <a href="#" onclick="saveNewRestaurant();">Save</a>
+        </div>
     </body>
 </html>
