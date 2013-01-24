@@ -1,0 +1,109 @@
+/* CSS Document */
+
+.restaurant-filter-container{
+	float:left; width:250px;
+	border:1px solid #CCC;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;	
+	min-height:200px;
+}
+.restaurant-filter-title{
+	text-align:center; padding:10px 0px 10px 0px; 
+	color:white; background-color:#063;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+}
+.restaurant-filter-list{
+	list-style:none;
+	padding:10px 20px 10px 20px;
+}
+.restaurant-filter-list li{
+	padding:5px 0px 5px 0px;
+}
+.restaurant-filter-list li span{
+	margin:0px 5px 0px 10px; font-size:16px;
+}
+.restaurant-filter-list li:hover{
+	background-color:#CCC;
+}
+
+.restaurant-ontop-title{
+	text-align:center; padding:10px 0px 10px 0px; 
+	color:white; background-color:#063;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+}
+.restaurant-ontop-list{
+	list-style:none;
+	padding:10px 20px 10px 20px;
+}
+.restaurant-ontop-list li{
+	padding:5px 0px 5px 0px;
+}
+.restaurant-ontop-list li a{
+	margin:0px 5px 0px 10px; font-size:16px;
+	border-bottom:1px dotted #CCC; display:block;
+}
+.restaurant-ontop-list li:hover{
+	background-color:#CCC; cursor:pointer;
+}
+.restaurant-arrange-title{
+	text-align:center; padding:10px 0px 10px 0px; 
+	color:white; background-color:#063;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+}
+.restaurant-arrange-type{
+	display:block;  width:200px;
+	margin:10px 20px 10px 20px;
+}
+
+/* LIST RESTAURANT */
+.restaurant-list-container{
+	float:left; width:665px; margin-left:40px;
+	border:1px solid #CCC;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+	min-height:200px;
+}
+
+.restaurant-list-container h3:nth-child(odd){
+	text-align:right; padding:10px 20px 10px 20px; 
+	color:white; background-color:#063;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+}
+.restaurant-list-container h3:nth-child(even){
+	text-align:left; padding:10px 20px 10px 20px; 
+	color:white; background-color:#09F;
+}
+.restaurant-list-item{
+	margin:auto;
+}
+.restaurant-name{
+	font-size:14px;
+	float:left; padding:5px 10px 10px 20px;	
+}
+.restaurant-name a{
+	display:block; text-decoration:none;
+	margin:5px; 
+	width:200px;
+	white-space:nowrap; overflow:hidden; text-overflow: ellipsis;
+}
+.restaurant-name img{
+	width:200px; height:80px;
+}
+.restaurant-location{
+	float:left; font-size:12px; padding:15px 10px 10px 10px;
+	width:120px;
+}
+.restaurant-review{
+	float:left;
+	width:200px;
+}
+.restaurant-list-container > div:nth-child(odd){
+	background-color:white;
+}
+.restaurant-list-container > div:nth-child(even){
+	background-color:#CCC;
+}
