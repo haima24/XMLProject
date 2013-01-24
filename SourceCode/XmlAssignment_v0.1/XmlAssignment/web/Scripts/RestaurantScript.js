@@ -12,7 +12,7 @@ function addRow(tableId,cells){
         newCell=newRow.insertCell(newRow.cells.length);
         newCell.innerHTML=cells[i];
     }
-    return newRow
+    return newRow;
 }
 
 function saveNewRestaurant(){
@@ -24,17 +24,28 @@ function saveNewRestaurant(){
     var tPhoneNum=document.getElementById("txtPhoneNum");
     
     var data="action=RESTAURANT_ADD&name="+
-        tName.value+"&latitute="+
-        tLatitue.value+"&longtitute="+
-        tLongtitute.value+ "&address="+
-        tAddress.value+"&description="+
-        tDescription.value+"&phone="+tPhoneNum.value;
+    tName.value+"&latitute="+
+    tLatitue.value+"&longtitute="+
+    tLongtitute.value+ "&address="+
+    tAddress.value+"&description="+
+    tDescription.value+"&phone="+tPhoneNum.value;
     xmlhttp=getXmlHttpObj();
     xmlhttp.open("GET",contextPath+"/RestaurantController?"+data,false);
     xmlhttp.send();
-    var resString=xmlhttp.responseText;
-    var containerElement=document.getElementById("RestaurantContainer");
-    containerElement.innerHTML=resString;
+    
+    var errorXml=xmlhttp.responseXML;
+    var errorContainer=document.getElementById("ErrorContainer");
+    errorContainer.innerHTML="";
+    
+    if(errorXml){
+        errorContainer.innerHTML=xmlhttp.responseXML.getElementsByTagName("error")[0].textContent.fontcolor("red");
+    }else{
+        var resString=xmlhttp.responseText;
+        var containerElement=document.getElementById("RestaurantContainer");
+        containerElement.innerHTML=resString;
+    }
+    
+    
     
    
 }

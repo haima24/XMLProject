@@ -14,6 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <div id="ErrorContainer"></div>
         <script language="JavaScript" src="${pageContext.request.contextPath}/Scripts/UtilsScript.js"></script>
         <script>var contextPath="${pageContext.request.contextPath}"</script>
         <script language="JavaScript" src="${pageContext.request.contextPath}/Scripts/RestaurantScript.js"></script>
@@ -24,12 +25,18 @@
         </div>
         <br/>
         <div>
-            <input type="text" id="txtName" value="" />
-            <input type="text" id="txtLatitute" value="" />
-            <input type="text" id="txtLongtitute" value="" />
-            <input type="text" id="txtAddress" value="" />
-            <input type="text" id="txtDescription" value="" />
-            <input type="text" id="txtPhoneNum" value="" />
+            Name: <input type="text" id="txtName" value="" />
+            <br/>
+            Latitute: <input type="text" id="txtLatitute" value="" />
+            <br/>
+            Longtitute: <input type="text" id="txtLongtitute" value="" />
+            <br/>
+            Address: <input type="text" id="txtAddress" value="" />
+            <br/>
+            Description: <input type="text" id="txtDescription" value="" />
+            <br/>
+            PhoneNum: <input type="text" id="txtPhoneNum" value="" />
+            <br/>
             <a href="#" onclick="saveNewRestaurant();">Save</a>
         </div>
     </body>

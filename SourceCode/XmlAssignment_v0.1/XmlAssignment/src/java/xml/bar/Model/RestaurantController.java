@@ -42,6 +42,7 @@ import xml.bar.core.DbEntities;
 import xml.bar.utils.DOMUtils;
 import xml.bar.utils.KeyValuePair;
 import xml.bar.utils.XmlUtils;
+import xml.bar.validation.DOM_RestaurantErrorHandler;
 import xml.bar.validation.XmlValidator;
 
 /**
@@ -97,58 +98,58 @@ public class RestaurantController extends HttpServlet {
 
                 //need to validate here
                 Node doc = DOMUtils.buildRestaurantDOM(properties);
-                XmlUtils.writeXML(doc, webPath+"XmlDoc/demo.xml");
-                
-                
-                DocumentBuilderFactory dbf= DocumentBuilderFactory.newInstance();
-                dbf.setNamespaceAware(true);
-                DocumentBuilder db=dbf.newDocumentBuilder();
-                Node doc2= db.parse(new File( webPath + "XmlDoc/demo.xml"));
-                
-                
-                XmlValidator.validate(webPath + "WEB-INF/classes/xml/bar/schemas/restaurants.xsd", new DOMSource(doc2));
-                XmlValidator.validate(webPath + "WEB-INF/classes/xml/bar/schemas/restaurants.xsd", new DOMSource(doc));
+//                XmlUtils.writeXML(doc, webPath+"XmlDoc/demo.xml");
+//                DocumentBuilderFactory dbf= DocumentBuilderFactory.newInstance();
+//                dbf.setNamespaceAware(true);
+//                DocumentBuilder db=dbf.newDocumentBuilder();
+//                Node doc2= db.parse(new File( webPath + "XmlDoc/demo.xml"));
+                DOM_RestaurantErrorHandler handler = new DOM_RestaurantErrorHandler();
+                XmlValidator.validate(webPath + "WEB-INF/classes/xml/bar/schemas/restaurants.xsd", new DOMSource(doc), handler);
+                if (handler.isError()) {
+                    String res="<?xml version='1.0' encoding='UTF-8'?>";
+                    res+="<error>"+handler.getErrorMessage()+"</error>";
+                    response.setContentType("text/xml");
+                    out.write(res);
+                } else {
+                    //after validating->save to db
+                    RestaurantType resType = new RestaurantType();
+                    //resType.setId(BigInteger.ZERO);
+                    resType.setName(name);
+                    resType.setLatitute(BigDecimal.valueOf(Double.parseDouble(latitute)));
+                    resType.setLongtitue(BigDecimal.valueOf(Double.parseDouble(longtitute)));
+                    resType.setAddress(address);
+                    resType.setDescription(description);
+                    resType.setMinimumOrder(BigDecimal.ZERO);
+                    resType.setPhoneNum(phone);
 
+                    GregorianCalendar gOpenHours = new GregorianCalendar();
+                    gOpenHours.setTime(new Date());
+                    resType.setOpenHours(DatatypeFactory.newInstance().newXMLGregorianCalendar(gOpenHours));
 
-                RestaurantType resType = new RestaurantType();
-                //resType.setId(BigInteger.ZERO);
-                resType.setName(name);
-                resType.setLatitute(BigDecimal.valueOf(Double.parseDouble(latitute)));
-                resType.setLongtitue(BigDecimal.valueOf(Double.parseDouble(longtitute)));
-                resType.setAddress(address);
-                resType.setDescription(description);
-                resType.setMinimumOrder(BigDecimal.ZERO);
-                resType.setPhoneNum(phone);
+                    GregorianCalendar gCloseHours = new GregorianCalendar();
+                    gCloseHours.setTime(new Date());
+                    resType.setCloseHours(DatatypeFactory.newInstance().newXMLGregorianCalendar(gCloseHours));
 
-                GregorianCalendar gOpenHours = new GregorianCalendar();
-                gOpenHours.setTime(new Date());
-                resType.setOpenHours(DatatypeFactory.newInstance().newXMLGregorianCalendar(gOpenHours));
+                    if (DbEntities.insertRestaurant(resType)) {
+                        String filePath = webPath + "XmlDoc/Restaurants.xml";
+                        Restaurants reslist = DbEntities.getRestaurants();
+                        XmlUtils.marshalXml(reslist, filePath);
 
-                GregorianCalendar gCloseHours = new GregorianCalendar();
-                gCloseHours.setTime(new Date());
-                resType.setCloseHours(DatatypeFactory.newInstance().newXMLGregorianCalendar(gCloseHours));
-
-                if (DbEntities.insertRestaurant(resType)) {
-                    String filePath = webPath + "XmlDoc/Restaurants.xml";
-                    Restaurants reslist = DbEntities.getRestaurants();
-                    XmlUtils.marshalXml(reslist, filePath);
-
-                    //respone obj->transform jaxb and xsl to string
-                    String xslPath = webPath + "XslDoc/Restaurants.xsl";
-                    String responseString = XmlUtils.TransformToString(xslPath, filePath);
-                    out.write(responseString);
+                        //respone obj->transform jaxb and xsl to string
+                        String xslPath = webPath + "XslDoc/Restaurants.xsl";
+                        String responseString = XmlUtils.TransformToString(xslPath, filePath);
+                        out.write(responseString);
+                    }
                 }
-            }
 
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RestaurantController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(RestaurantController.class.getName()).log(Level.SEVERE, null, ex);
-        }catch (DatatypeConfigurationException ex) {
+        } catch (DatatypeConfigurationException ex) {
             Logger.getLogger(RestaurantController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SAXException ex) {
             Logger.getLogger(RestaurantController.class.getName()).log(Level.SEVERE, null, ex);
-        }  finally {
+        } finally {
             out.close();
         }
     }
