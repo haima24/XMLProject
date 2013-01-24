@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+    <student studentid="SE60268">
+        <lastname>
+            Kieu
+        </lastname>
+        <name>
+            Khanh
+        </name>
+        <password>
+            5098
+        </password>
+        <status>
+            studying
+        </status>
+    </student>
+    <student studentid="SE50268">
+        <lastname>
+            Nguyen
+        </lastname>
+        <name>
+            Khoi
+        </name>
+        <password>
+            1098
+        </password>
+        <status>
+            dropout
+        </status>
+    </student>
+    <student studentid="56728">
+        <lastname>
+            Minh
+        </lastname>
+        <name>
+            Tu
+        </name>
+        <password>
+            7798
+        </password>
+        <status>
+            break
+        </status>
+    </student>
+</students>
