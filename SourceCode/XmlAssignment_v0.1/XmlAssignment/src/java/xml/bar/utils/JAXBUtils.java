@@ -24,6 +24,8 @@ public class JAXBUtils {
     public static void main(String[] arg){
         //JAXBUtils.buildJaxbCode("src/java/xml/bar/schemas/dishcategories.xsd", "src/java","xml.bar.binding.dishcategories");
        // JAXBUtils.buildJaxbCode("src/java/xml/bar/schemas/restaurants.xsd", "src/java","xml.bar.binding.restaurants");
+        //JAXBUtils.buildJaxbCode("src/java/xml/bar/schemas/discounts.xsd", "src/java","xml.bar.binding.discounts");
+        
     }
     public static void buildJaxbCode(String sourcePath,String outputPath,String packageName) {
         try {

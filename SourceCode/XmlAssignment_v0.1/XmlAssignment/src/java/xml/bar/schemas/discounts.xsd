@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://xml.netbeans.org/schema/discounts"
+    xmlns="http://xml.netbeans.org/schema/discounts"
+    elementFormDefault="qualified">
+    <xsd:element name="Discounts">
+        <xsd:complexType>
+            <xsd:sequence>
+            <xsd:element name="Discount" type="discountType" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="discountType">
+        <xsd:sequence>
+            <xsd:element name="Id" minOccurs="0" maxOccurs="1" type="xsd:positiveInteger"/>
+            <xsd:element name="RestaunrantId" type="xsd:positiveInteger"/>
+            <xsd:element name="Value" type="xsd:positiveInteger"/>
+            <xsd:element name="BeginDate" type="xsd:dateTime"/>
+            <xsd:element name="EndDate" type="xsd:dateTime"/>
+            <xsd:element name="isActive" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

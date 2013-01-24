@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.datatype.DatatypeConfigurationException;
+import xml.bar.binding.discounts.Discounts;
 import xml.bar.binding.dishcategories.DishCategories;
 import xml.bar.binding.restaurants.Restaurants;
 import xml.bar.core.DbEntities;
@@ -51,7 +52,13 @@ public class XmlController extends HttpServlet {
                 String webPath = getServletContext().getRealPath("/");
                 String filePath = webPath + "XmlDoc/DishCategory.xml";
                 XmlUtils.marshalXml(dishes, filePath);
+            }else if(action.equals("MARSHAL_DISCOUNT")){
+                Discounts discounts = DbEntities.getDiscounts();
+                String webPath = getServletContext().getRealPath("/");
+                String filePath = webPath + "XmlDoc/Discounts.xml";
+                XmlUtils.marshalXml(discounts, filePath);
             }
+
         } catch (SQLException ex) {
             Logger.getLogger(XmlController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DatatypeConfigurationException ex) {

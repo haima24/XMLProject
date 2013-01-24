@@ -14,6 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
+import xml.bar.binding.discounts.DiscountType;
+import xml.bar.binding.discounts.Discounts;
 import xml.bar.binding.dishcategories.DishCategories;
 import xml.bar.binding.dishcategories.DishCategoryType;
 import xml.bar.binding.restaurants.RestaurantType;
@@ -39,7 +41,7 @@ public class DbEntities {
             pre.setDouble(7, res.getMinimumOrder().doubleValue());
             pre.setDate(8, new Date(res.getOpenHours().toGregorianCalendar().getTime().getTime()));
             pre.setDate(9, new Date(res.getCloseHours().toGregorianCalendar().getTime().getTime()));
-            return pre.executeUpdate()>0;
+            return pre.executeUpdate() > 0;
 
         } catch (SQLException ex) {
             Logger.getLogger(DbEntities.class.getName()).log(Level.SEVERE, null, ex);
@@ -104,5 +106,34 @@ public class DbEntities {
             con.close();
         }
         return dishes;
+    }
+
+    public static Discounts getDiscounts() throws SQLException, DatatypeConfigurationException {
+        String sql = "select * from BAR_Discount";
+        Connection con = DataAccessLayer.getConnection();
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        Discounts discounts = new Discounts();
+        try {
+            while (rs.next()) {
+                DiscountType discountType = new DiscountType();
+                discountType.setId(BigInteger.valueOf(rs.getInt("Id")));
+                discountType.setRestaunrantId(BigInteger.valueOf(rs.getInt("RestaunrantId")));
+                discountType.setValue(BigInteger.valueOf(rs.getInt("Value")));
+                GregorianCalendar cldBeginDate = new GregorianCalendar();
+                cldBeginDate.setTime(rs.getTime("BeginDate"));
+                discountType.setBeginDate(DatatypeFactory.newInstance().newXMLGregorianCalendar(cldBeginDate));
+                GregorianCalendar cldEndDate = new GregorianCalendar();
+                cldEndDate.setTime(rs.getTime("EndDate"));
+                discountType.setEndDate(DatatypeFactory.newInstance().newXMLGregorianCalendar(cldEndDate));
+
+                discounts.getDiscount().add(discountType);
+            }
+        } finally {
+            rs.close();
+            st.close();
+            con.close();
+        }
+        return discounts;
     }
 }
