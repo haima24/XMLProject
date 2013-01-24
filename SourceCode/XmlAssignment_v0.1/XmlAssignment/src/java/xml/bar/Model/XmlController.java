@@ -46,8 +46,8 @@ public class XmlController extends HttpServlet {
                 String webPath = getServletContext().getRealPath("/");
                 String filePath = webPath + "XmlDoc/Restaurants.xml";
                 XmlUtils.marshalXml(resList, filePath);
-            }else if(action.equals("MARSHAL_DISHCATEGORY")){
-                DishCategories dishes=DbEntities.getDishCategories();
+            } else if (action.equals("MARSHAL_DISHCATEGORY")) {
+                DishCategories dishes = DbEntities.getDishCategories();
                 String webPath = getServletContext().getRealPath("/");
                 String filePath = webPath + "XmlDoc/DishCategory.xml";
                 XmlUtils.marshalXml(dishes, filePath);
@@ -56,6 +56,8 @@ public class XmlController extends HttpServlet {
             Logger.getLogger(XmlController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DatatypeConfigurationException ex) {
             Logger.getLogger(XmlController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         } finally {
             out.close();
         }

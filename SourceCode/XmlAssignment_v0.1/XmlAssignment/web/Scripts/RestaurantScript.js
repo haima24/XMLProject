@@ -2,17 +2,19 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-function getXmlHttpObj(){
-    if (window.XMLHttpRequest)
-    {// code for IE7+, Firefox, Chrome, Opera, Safari
-        xml=new XMLHttpRequest();
+var xmlDoc;
+
+function addRow(tableId,cells){
+    var tbl=document.getElementById(tableId);
+    var newRow=tbl.insertRow(tbl.rows.length);
+    var newCell;
+    for (i = 0; i < cells.length; i++) {
+        newCell=newRow.insertCell(newRow.cells.length);
+        newCell.innerHTML=cells[i];
     }
-    else
-    {// code for IE6, IE5
-        xml=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    return xml;
+    return newRow
 }
+
 function saveNewRestaurant(){
     var tName=document.getElementById("txtName");
     var tLatitue=document.getElementById("txtLatitute");
@@ -30,6 +32,10 @@ function saveNewRestaurant(){
     xmlhttp=getXmlHttpObj();
     xmlhttp.open("GET",contextPath+"/RestaurantController?"+data,false);
     xmlhttp.send();
-    xmlDoc=xmlhttp.responseXML;
+    var resString=xmlhttp.responseText;
+    var containerElement=document.getElementById("RestaurantContainer");
+    containerElement.innerHTML=resString;
+    
+   
 }
 

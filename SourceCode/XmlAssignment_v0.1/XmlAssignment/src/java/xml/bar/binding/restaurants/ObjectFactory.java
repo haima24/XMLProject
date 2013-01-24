@@ -30,19 +30,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RestaurantType }
-     * 
-     */
-    public RestaurantType createRestaurantType() {
-        return new RestaurantType();
-    }
-
-    /**
      * Create an instance of {@link Restaurants }
      * 
      */
     public Restaurants createRestaurants() {
         return new Restaurants();
+    }
+
+    /**
+     * Create an instance of {@link RestaurantType }
+     * 
+     */
+    public RestaurantType createRestaurantType() {
+        return new RestaurantType();
     }
 
 }

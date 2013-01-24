@@ -13,7 +13,7 @@
     </xsd:element>
     <xsd:complexType name="dishCategoryType">
         <xsd:sequence>
-            <xsd:element name="Id" type="xsd:positiveInteger"/>
+            <xsd:element name="Id" minOccurs="0" maxOccurs="1"  type="xsd:positiveInteger"/>
             <xsd:element name="RestaurantId" type="xsd:positiveInteger"/>
             <xsd:element name="Name" type="xsd:string"/>
             <xsd:element name="IsActive" type="xsd:boolean"/>

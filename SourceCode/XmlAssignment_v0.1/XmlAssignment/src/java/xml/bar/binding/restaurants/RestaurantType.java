@@ -22,7 +22,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Id" type="{http://www.w3.org/2001/XMLSchema}positiveInteger"/>
+ *         &lt;element name="Id" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" minOccurs="0"/>
  *         &lt;element name="Name" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="Latitute" type="{http://www.w3.org/2001/XMLSchema}decimal"/>
  *         &lt;element name="Longtitue" type="{http://www.w3.org/2001/XMLSchema}decimal"/>
@@ -32,6 +32,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="MinimumOrder" type="{http://www.w3.org/2001/XMLSchema}decimal"/>
  *         &lt;element name="OpenHours" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *         &lt;element name="CloseHours" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
+ *         &lt;element name="IsActive" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -51,13 +52,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "phoneNum",
     "minimumOrder",
     "openHours",
-    "closeHours"
+    "closeHours",
+    "isActive"
 })
 
-@XmlRootElement
 public class RestaurantType {
 
-    @XmlElement(name = "Id", required = true)
+    @XmlElement(name = "Id")
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger id;
     @XmlElement(name = "Name", required = true)
@@ -80,6 +81,8 @@ public class RestaurantType {
     @XmlElement(name = "CloseHours", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar closeHours;
+    @XmlElement(name = "IsActive")
+    protected boolean isActive;
 
     /**
      * Gets the value of the id property.
@@ -319,6 +322,22 @@ public class RestaurantType {
      */
     public void setCloseHours(XMLGregorianCalendar value) {
         this.closeHours = value;
+    }
+
+    /**
+     * Gets the value of the isActive property.
+     * 
+     */
+    public boolean isIsActive() {
+        return isActive;
+    }
+
+    /**
+     * Sets the value of the isActive property.
+     * 
+     */
+    public void setIsActive(boolean value) {
+        this.isActive = value;
     }
 
 }

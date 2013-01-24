@@ -8,7 +8,7 @@
         Purpose of transformation follows.
 -->
 
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://xml.netbeans.org/schema/restaurants" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:bar="http://xml.netbeans.org/schema/restaurants" exclude-result-prefixes="bar" version="1.0">
     <xsl:output method="html" indent="yes" version="1.0"/>
     <xsl:param name="resid" select="0"/>
     <!-- TODO customize transformation rules 
@@ -23,19 +23,19 @@
                 </tr>
             </thead>
             <tbody>
-                <xsl:for-each select="Restaurants/Restaurant">
+                <xsl:for-each select="bar:Restaurants/bar:Restaurant">
                     <tr>
                         <td>
-                            <xsl:value-of select="Name"/>
+                            <xsl:value-of select="bar:Name"/>
                         </td>
                         <td>
-                            <xsl:value-of select="Address"/>
+                            <xsl:value-of select="bar:Address"/>
                         </td>
                         <td> 
                             <a>
                                 <xsl:attribute name="href">
                                     <xsl:text>DishCategory.jsp?resid=</xsl:text>
-                                    <xsl:value-of select="Id" />
+                                    <xsl:value-of select="bar:Id" />
                                 </xsl:attribute>
                                 <xsl:text>ViewCategory</xsl:text>
                             </a>

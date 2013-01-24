@@ -14,11 +14,14 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <script language="JavaScript" src="${pageContext.request.contextPath}/Scripts/UtilsScript.js"></script>
         <script>var contextPath="${pageContext.request.contextPath}"</script>
         <script language="JavaScript" src="${pageContext.request.contextPath}/Scripts/RestaurantScript.js"></script>
+        <div id="RestaurantContainer">
         <c:import url="/XmlDoc/Restaurants.xml" var="xmlDoc" charEncoding="UTF-8"/>
         <c:import url="/XslDoc/Restaurants.xsl" var="xslDoc" charEncoding="UTF-8"/>
         <x:transform xml="${xmlDoc}" xslt="${xslDoc}"/>
+        </div>
         <br/>
         <div>
             <input type="text" id="txtName" value="" />

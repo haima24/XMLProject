@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Id" type="{http://www.w3.org/2001/XMLSchema}positiveInteger"/>
+ *         &lt;element name="Id" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" minOccurs="0"/>
  *         &lt;element name="RestaurantId" type="{http://www.w3.org/2001/XMLSchema}positiveInteger"/>
  *         &lt;element name="Name" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="IsActive" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class DishCategoryType {
 
-    @XmlElement(name = "Id", required = true)
+    @XmlElement(name = "Id")
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger id;
     @XmlElement(name = "RestaurantId", required = true)

@@ -12,9 +12,13 @@ import java.util.logging.Logger;
 import javax.xml.XMLConstants;
 import javax.xml.bind.*;
 import javax.xml.stream.XMLStreamWriter;
-import javax.xml.transform.Result;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
+import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 import xml.bar.binding.restaurants.Restaurants;
 
@@ -23,7 +27,40 @@ import xml.bar.binding.restaurants.Restaurants;
  * @author Tu
  */
 public class XmlUtils {
-
+public static void writeXML(Node node,String filePath){
+        try {
+            TransformerFactory tff = TransformerFactory.newInstance();
+            Transformer trans = tff.newTransformer();
+            Source src=new DOMSource(node);
+            File file=new File(filePath);
+            Result result=new StreamResult(file);
+            trans.setOutputProperty(OutputKeys.INDENT, "yes");
+            trans.transform(src, result);
+        }catch (TransformerConfigurationException ex) {
+            Logger.getLogger(XmlUtils.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(XmlUtils.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    public static String TransformToString(String xslPath,String xmlPath){
+        String result="";
+        try {
+            StreamSource xslStream=new StreamSource(xslPath);
+            StreamSource xmlStream=new StreamSource(xmlPath);
+            TransformerFactory tff=TransformerFactory.newInstance();
+            Transformer tf= tff.newTransformer(xslStream);
+            StringWriter sw=new StringWriter();
+            StreamResult rs=new StreamResult(sw);
+            tf.transform(xmlStream, rs);
+            result=sw.toString();
+        } catch (TransformerConfigurationException ex) {
+            Logger.getLogger(XmlUtils.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (TransformerException ex) {
+            Logger.getLogger(XmlUtils.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        return result;
+    }
+    
     public static void marshalXml(Object obj, String filePath) {
         try {
             JAXBContext context = JAXBContext.newInstance(obj.getClass());
