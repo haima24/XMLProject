@@ -26,7 +26,7 @@ import org.w3c.dom.Node;
  */
 public class DOMUtils {
 
-    public static Node buildRestaurantDOM(List<KeyValuePair<String, Object>> properties) {
+    public static Node buildRestaurantDOM(Map<String,Object> properties) {
         try {
             DocumentBuilderFactory factory =
                     DocumentBuilderFactory.newInstance();
@@ -40,9 +40,10 @@ public class DOMUtils {
             Element root = document.createElementNS(docNS, "Restaurants");
             document.appendChild(root);
             Element res = document.createElementNS(docNS, "Restaurant");
-            for (KeyValuePair<String, Object> obj : properties) {
-                Element ele = document.createElementNS(docNS, obj.getKey());
-                ele.setTextContent(obj.getObj().toString());
+            Set<String>keys=properties.keySet();
+            for (String key : keys) {
+                Element ele = document.createElementNS(docNS, key);
+                ele.setTextContent(properties.get(key).toString());
                 res.appendChild(ele);
             }
             root.appendChild(res);

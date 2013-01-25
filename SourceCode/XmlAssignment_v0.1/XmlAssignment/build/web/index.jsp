@@ -16,5 +16,7 @@
     </head>
     <body>
         <a href="Partials/Transform/Restaurant.jsp">List Restaurant</a>
+        <a href="Partials/Transform/Discount.jsp">List Discount</a>
+
     </body>
 </html>

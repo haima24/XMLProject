@@ -12,7 +12,7 @@
     </xsd:element>
     <xsd:complexType name="restaurantType">
         <xsd:sequence>
-            <xsd:element name="Id" type="xsd:positiveInteger"/>
+            <xsd:element name="Id" minOccurs="0" maxOccurs="1" type="xsd:positiveInteger"/>
             <xsd:element name="Name" type="xsd:string"/>
             <xsd:element name="Latitute" type="xsd:decimal"/>
             <xsd:element name="Longtitue" type="xsd:decimal"/>
@@ -20,8 +20,9 @@
             <xsd:element name="Description" type="xsd:string"/>
             <xsd:element name="PhoneNum" type="xsd:string"/>
             <xsd:element name="MinimumOrder" type="xsd:decimal"/>
-            <xsd:element name="OpenHours" type="xsd:dateTime"/>
-            <xsd:element name="CloseHours" type="xsd:dateTime"/>
+            <xsd:element name="OpenHours" type="xsd:time"/>
+            <xsd:element name="CloseHours" type="xsd:time"/>
+            <xsd:element name="IsActive" type="xsd:boolean"/>
         </xsd:sequence>
     </xsd:complexType>
 </xsd:schema>

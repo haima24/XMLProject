@@ -6,7 +6,6 @@ import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -30,8 +29,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="Description" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="PhoneNum" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="MinimumOrder" type="{http://www.w3.org/2001/XMLSchema}decimal"/>
- *         &lt;element name="OpenHours" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
- *         &lt;element name="CloseHours" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
+ *         &lt;element name="OpenHours" type="{http://www.w3.org/2001/XMLSchema}time"/>
+ *         &lt;element name="CloseHours" type="{http://www.w3.org/2001/XMLSchema}time"/>
  *         &lt;element name="IsActive" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -55,7 +54,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "closeHours",
     "isActive"
 })
-
 public class RestaurantType {
 
     @XmlElement(name = "Id")
@@ -76,10 +74,10 @@ public class RestaurantType {
     @XmlElement(name = "MinimumOrder", required = true)
     protected BigDecimal minimumOrder;
     @XmlElement(name = "OpenHours", required = true)
-    @XmlSchemaType(name = "dateTime")
+    @XmlSchemaType(name = "time")
     protected XMLGregorianCalendar openHours;
     @XmlElement(name = "CloseHours", required = true)
-    @XmlSchemaType(name = "dateTime")
+    @XmlSchemaType(name = "time")
     protected XMLGregorianCalendar closeHours;
     @XmlElement(name = "IsActive")
     protected boolean isActive;
