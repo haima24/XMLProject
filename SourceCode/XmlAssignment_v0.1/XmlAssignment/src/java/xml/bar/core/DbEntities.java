@@ -67,12 +67,22 @@ public class DbEntities {
                 res.setPhoneNum(rs.getString("PhoneNum"));
                 res.setMinimumOrder(BigDecimal.valueOf(rs.getDouble("MinimumOrder")));
 
+                java.util.Date now = new java.util.Date();
+
                 GregorianCalendar cldOpenHours = new GregorianCalendar();
-                cldOpenHours.setTime(rs.getDate("OpenHours"));
+                Time tOpen = rs.getTime("OpenHours");
+                if (tOpen != null) {
+                    now.setTime(tOpen.getTime());
+                }
+                cldOpenHours.setTime(now);
                 res.setOpenHours(DatatypeFactory.newInstance().newXMLGregorianCalendar(cldOpenHours));
 
                 GregorianCalendar cldCloseHours = new GregorianCalendar();
-                cldCloseHours.setTime(rs.getDate("CloseHours"));
+                Time tClose = rs.getTime("CloseHours");
+                if (tClose != null) {
+                    now.setTime(tClose.getTime());
+                }
+                cldCloseHours.setTime(now);
                 res.setCloseHours(DatatypeFactory.newInstance().newXMLGregorianCalendar(cldCloseHours));
 
                 restaurants.getRestaurant().add(res);

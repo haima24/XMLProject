@@ -73,13 +73,6 @@ public class RestaurantController extends HttpServlet {
                 String webPath = getServletContext().getRealPath("/");
 
                 Map<String, Object> properties = new LinkedHashMap<String, Object>();
-//                properties.add(new KeyValuePair<String, Object>("Name", name));
-//                properties.add(new KeyValuePair<String, Object>("Latitute", latitute));
-//                properties.add(new KeyValuePair<String, Object>("Longtitue", longtitute));
-//                properties.add(new KeyValuePair<String, Object>("Address", address));
-//                properties.add(new KeyValuePair<String, Object>("Description", description));
-//                properties.add(new KeyValuePair<String, Object>("PhoneNum", phone));
-//                properties.add(new KeyValuePair<String, Object>("MinimumOrder", 1));
                 properties.put("Name", name);
                 properties.put("Latitute", latitute);
                 properties.put("Longtitue", longtitute);
@@ -90,20 +83,15 @@ public class RestaurantController extends HttpServlet {
 
                 GregorianCalendar cldOpenHours = new GregorianCalendar();
                 cldOpenHours.setTime(new Date());
-                properties.put("OpenHours", DatatypeFactory.newInstance().newXMLGregorianCalendarTime(7, 30, 20, 7));
+                properties.put("OpenHours", DatatypeFactory.newInstance().newXMLGregorianCalendarTime(7, 30, 20, 7).toXMLFormat());
 
                 GregorianCalendar cldCloseHours = new GregorianCalendar();
                 cldCloseHours.setTime(new Date());
-                properties.put("CloseHours", DatatypeFactory.newInstance().newXMLGregorianCalendar(cldCloseHours));
+                properties.put("CloseHours", DatatypeFactory.newInstance().newXMLGregorianCalendarTime(7, 30, 20, 7).toXMLFormat());
                 properties.put("IsActive", true);
 
                 //need to validate here
                 Node doc = DOMUtils.buildRestaurantDOM(properties);
-//                XmlUtils.writeXML(doc, webPath+"XmlDoc/demo.xml");
-//                DocumentBuilderFactory dbf= DocumentBuilderFactory.newInstance();
-//                dbf.setNamespaceAware(true);
-//                DocumentBuilder db=dbf.newDocumentBuilder();
-//                Node doc2= db.parse(new File( webPath + "XmlDoc/demo.xml"));
                 DOM_RestaurantErrorHandler handler = new DOM_RestaurantErrorHandler();
                 XmlValidator.validate(webPath + "WEB-INF/classes/xml/bar/schemas/restaurants.xsd", new DOMSource(doc), handler);
                 if (handler.isError()) {
