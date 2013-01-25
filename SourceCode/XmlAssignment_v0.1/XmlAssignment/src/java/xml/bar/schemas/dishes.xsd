@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://xml.netbeans.org/schema/dishes"
+    xmlns="http://xml.netbeans.org/schema/dishes"
+    elementFormDefault="qualified">
+<xsd:element name="Dishes">
+    <xsd:complexType>
+        <xsd:sequence>
+            <xsd:element name="Dish" type="dishType" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="dishType">
+        <xsd:sequence>
+            <xsd:element name="Id" type="xsd:positiveInteger"/>
+            <xsd:element name="RestaurantId" type="xsd:positiveInteger"/>
+            <xsd:element name="Name" type="xsd:string"/>
+            <xsd:element name="Description" type="xsd:string"/>
+            <xsd:element name="Price" type="xsd:decimal"/>
+            <xsd:element name="CategoryId" type="xsd:positiveInteger"/>
+            <xsd:element name="IsActive" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>
