@@ -14,30 +14,41 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div id="ErrorContainer"></div>
-        <script language="JavaScript" src="${pageContext.request.contextPath}/Scripts/UtilsScript.js"></script>
-        <script>var contextPath="${pageContext.request.contextPath}"</script>
-        <script language="JavaScript" src="${pageContext.request.contextPath}/Scripts/RestaurantScript.js"></script>
-        <div id="RestaurantContainer">
-        <c:import url="/XmlDoc/Restaurants.xml" var="xmlDoc" charEncoding="UTF-8"/>
-        <c:import url="/XslDoc/Restaurants.xsl" var="xslDoc" charEncoding="UTF-8"/>
-        <x:transform xml="${xmlDoc}" xslt="${xslDoc}"/>
-        </div>
-        <br/>
-        <div>
-            Name: <input type="text" id="txtName" value="" />
-            <br/>
-            Latitute: <input type="text" id="txtLatitute" value="" />
-            <br/>
-            Longtitute: <input type="text" id="txtLongtitute" value="" />
-            <br/>
-            Address: <input type="text" id="txtAddress" value="" />
-            <br/>
-            Description: <input type="text" id="txtDescription" value="" />
-            <br/>
-            PhoneNum: <input type="text" id="txtPhoneNum" value="" />
-            <br/>
-            <a href="#" onclick="saveNewRestaurant();">Save</a>
-        </div>
+        <c:catch var="ex">
+            <c:import url="/XmlDoc/Restaurants.xml" var="xmlDoc" charEncoding="UTF-8"/>
+        </c:catch>
+        <c:choose>
+            <c:when test="${not empty ex}">
+                <jsp:forward page="/XmlController">
+                    <jsp:param name="action" value="MARSHAL_RESTAURANTS"/>
+                </jsp:forward>
+            </c:when>
+            <c:otherwise>
+                <c:import url="/XslDoc/Restaurants.xsl" var="xslDoc" charEncoding="UTF-8"/>
+                <div id="ErrorContainer"></div>
+                <script language="JavaScript" src="${pageContext.request.contextPath}/Scripts/UtilsScript.js"></script>
+                <script>var contextPath="${pageContext.request.contextPath}"</script>
+                <script language="JavaScript" src="${pageContext.request.contextPath}/Scripts/RestaurantScript.js"></script>
+                <div id="RestaurantContainer">
+                    <x:transform xml="${xmlDoc}" xslt="${xslDoc}"/>
+                </div>
+                <br/>
+                <div>
+                    Name: <input type="text" id="txtName" value="" />
+                    <br/>
+                    Latitute: <input type="text" id="txtLatitute" value="" />
+                    <br/>
+                    Longtitute: <input type="text" id="txtLongtitute" value="" />
+                    <br/>
+                    Address: <input type="text" id="txtAddress" value="" />
+                    <br/>
+                    Description: <input type="text" id="txtDescription" value="" />
+                    <br/>
+                    PhoneNum: <input type="text" id="txtPhoneNum" value="" />
+                    <br/>
+                    <a href="#" onclick="saveNewRestaurant();">Save</a>
+                </div>
+            </c:otherwise>
+        </c:choose>
     </body>
 </html>

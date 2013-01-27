@@ -83,11 +83,11 @@ public class RestaurantController extends HttpServlet {
 
                 GregorianCalendar cldOpenHours = new GregorianCalendar();
                 cldOpenHours.setTime(new Date());
-                properties.put("OpenHours", DatatypeFactory.newInstance().newXMLGregorianCalendarTime(7, 30, 20, 7).toXMLFormat());
+                properties.put("OpenHours", DatatypeFactory.newInstance().newXMLGregorianCalendar(cldOpenHours).toXMLFormat());
 
                 GregorianCalendar cldCloseHours = new GregorianCalendar();
                 cldCloseHours.setTime(new Date());
-                properties.put("CloseHours", DatatypeFactory.newInstance().newXMLGregorianCalendarTime(7, 30, 20, 7).toXMLFormat());
+                properties.put("CloseHours", DatatypeFactory.newInstance().newXMLGregorianCalendar(cldCloseHours).toXMLFormat());
                 properties.put("IsActive", true);
 
                 //need to validate here

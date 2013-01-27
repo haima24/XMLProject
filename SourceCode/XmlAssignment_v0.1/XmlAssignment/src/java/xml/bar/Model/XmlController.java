@@ -26,6 +26,8 @@ import xml.bar.utils.XmlUtils;
  */
 public class XmlController extends HttpServlet {
 
+    private final String restaurantListPage="Partials/Transform/Restaurant.jsp";
+    
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -47,6 +49,7 @@ public class XmlController extends HttpServlet {
                 String webPath = getServletContext().getRealPath("/");
                 String filePath = webPath + "XmlDoc/Restaurants.xml";
                 XmlUtils.marshalXml(resList, filePath);
+                request.getRequestDispatcher(restaurantListPage).forward(request, response);
             } else if (action.equals("MARSHAL_DISHCATEGORY")) {
                 DishCategories dishes = DbEntities.getDishCategories();
                 String webPath = getServletContext().getRealPath("/");

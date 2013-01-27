@@ -39,6 +39,21 @@
                                 </xsl:attribute>
                                 <xsl:text>ViewCategory</xsl:text>
                             </a>
+                            
+                        </td>
+                        <td>
+                            <a>
+                                <xsl:attribute name="resid">
+                                    <xsl:value-of select="bar:Id"/>
+                                </xsl:attribute>
+                                <xsl:attribute name="href">
+                                    <xsl:text>#</xsl:text>
+                                </xsl:attribute>
+                                <xsl:attribute name="class">
+                                    <xsl:text>linkUpdate</xsl:text>
+                                </xsl:attribute>
+                                <xsl:text>Update</xsl:text>
+                            </a>
                         </td>
                     </tr>
                 </xsl:for-each>
